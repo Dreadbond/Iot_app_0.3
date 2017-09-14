@@ -1,0 +1,14 @@
+Le client doit :
+afficher les infos du jeu
+faire du son
+faire entrer des modifications (reset, munitions ...)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Le serveur doit :
+recevoir les messages Arduino
+voir si les actions font des trucs
+renvoyer les messages vers Arduino
+
+
+
