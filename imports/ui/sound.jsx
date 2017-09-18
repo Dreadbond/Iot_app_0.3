@@ -2,6 +2,10 @@
 //http://buzz.jaysalvat.com/documentation/sound/
 //var s = new buzz.sound(sound);
 
+//Player.update({name: "Dreadbond" }, {$set: {soundFile: "pistol/depleted"}});
+//et
+//    Meteor.call('sound',  ()=> {});
+
 Meteor.methods({
     button(){
         try {
@@ -12,17 +16,16 @@ Meteor.methods({
     },
 
     sound(){
+      
     sound = Player.find({}).fetch()[0] ;
     if (sound.soundFile != "void") {
       try {
-        sound = sound.soundFile ;
-        sound += ".mp3";
-        sound = "/sounds/" + sound ;
-        var s = new buzz.sound(sound);
+        sound = "/sounds/" + sound.soundFile + ".mp3" ;
+        var s = new buzz.sound(sound); //, {formats: [ "ogg", "mp3", "aac", "wav" ]});
         s.play();
         }
       catch(e) {}
       }
-
+      //Player.update({name: "Dreadbond" }, {$set: {soundFile: "void"}});
     }
 });

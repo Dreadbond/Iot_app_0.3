@@ -7,14 +7,18 @@ import '../imports/api/hub.js';
 Meteor.startup(() => {
   Player.remove({});
   World.remove({});
-
+  date = Date();
 
     let defaultPlayer = {
         name : "Dreadbond",
         number: 1,
+        tag: "!11",
         health: 100,
         armor: 0,
         wizar: 100,
+
+        inventory: [],
+        buff: [],
 
         pistol: {
             directTarget: "none",
@@ -25,15 +29,25 @@ Meteor.startup(() => {
         frag: 0,
         death: 0,
 
+        isDead: false,
+
         event: "",
         soundFile: "void",
         feedback: "",
     };
+
+    
+    
     let defaultWorld = {
-        string : "creation"
+        event : "creation",
+        createdAt : date
     };
 
     Player.insert(defaultPlayer);
-    World.insert(defaultPlayer);
+    defaultPlayer.name = "Alarik";
+    defaultPlayer.tag = "!22";
+    Player.insert(defaultPlayer);
+
+    World.insert(defaultWorld);
 
 });

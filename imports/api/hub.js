@@ -1,6 +1,6 @@
-import {Meteor} from 'meteor/meteor';
+//import {Meteor} from 'meteor/meteor';
 import serialport from 'serialport';
-import Player from './collections/player.js';
+//import Player from './collections/player.js';
 import rules from './rules.js';
 
 var port = "COM5" ; //process.argv[2];
@@ -50,7 +50,8 @@ rules.general() ;
 
 Meteor.methods({
     hubSend( to, param, value, from = "!11"){
-
+        value = value.toString()
+        
     var DataToSend = new Object();
     DataToSend.to = to;
     DataToSend.from  = from;

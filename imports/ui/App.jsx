@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import Player from '../api/collections/player.js';
+import World from '../api/collections/world.js';
+//import combats from '../api/world/combats.js';
 import './sound.jsx';
 import Sound from 'react-sound';
-//import '../api/rules.js';
+
 //meteor add brentjanderson:buzz
 //http://buzz.jaysalvat.com/documentation/sound/
 class App extends Component {  
@@ -23,7 +25,25 @@ class App extends Component {
     });
   }
 
-  _manualSends(){
+  _newEvent(){
+    var event = document.getElementById("eventText").value;
+        event += '}';
+    var messJson ;
+
+                try {
+                        messJson = JSON.parse(event);
+                }
+                catch(e){console.log("Erreur envoi event manuel : ", e)}
+                
+                World.insert({
+                        event: messJson , createdAt: new Date() 
+                        },()=>{
+                        Meteor.call('worldProcess');
+                });
+
+  }
+
+  _manualSend(){
       var from = document.getElementById("from").value;
       var to = document.getElementById("to").value;
       var param = document.getElementById("param").value;
@@ -97,10 +117,19 @@ function stat(asked, asked2, asked3) {
 
         </div>
 
-        <div id="manual-sends">
+
+
+
+
+        <div id="manual-send">
           <br/>
-          <button onClick={this._manualSends}>Envoi 1</button>
+          Commande des objets
           <br/>
+
+
+          <button onClick={this._manualSend}>Send</button>
+
+
               <select id="from" defaultValue="!11">
                 <option value="!11">!11</option> 
               </select>
@@ -113,7 +142,7 @@ function stat(asked, asked2, asked3) {
                 <option value=":grimoire">Grimoire</option>
               </select>
 
-              <select id="param" defaultValue="shoot">
+              <select id="param" defaultValue="beenShot">
                 <option value="poisoned">empoisonné</option>
                 <option value="onFire" >enflammé</option>
                 <option value="beenShot" >touché</option>
@@ -121,19 +150,32 @@ function stat(asked, asked2, asked3) {
                 <option value="shieldShot" >shield shot</option>
                 <option value="healed" >healed</option>
                 <option value="health" >vie à</option>
-                <option value="shoot" >tire</option>
-                <option value="shoot" >tire</option>
-                <option value="shoot" >tire</option>
-                <option value="shoot" >tire</option>
-                <option value="shoot" >tire</option>
-                <option value="shoot" >tire</option>
-                <option value="shoot" >tire</option>
-                <option value="shoot" >tire</option>
-                <option value="shoot" >tire</option>
+                <option value="shootFB" >tire</option>
+                <option value="sightFB" >sight</option>
+                <option value="!sightFB" >No sight</option>
               </select>
 
               <input id="value" type="number" defaultValue="1"></input>
 
+
+          
+        </div>
+
+
+
+
+        <div id="manual-event">
+          <br/>
+            <button onClick={this._newEvent}>New event</button>
+          <br/>
+
+          <textarea id="eventText" rows="10" cols="50"> 
+            {
+              '{"FROM": "Dreadbond","TO": "Alarik","TYPE": "damage","VALUE": "20"'
+            }
+            {/* http://objgen.com/json */}
+
+          </textarea>
         </div>
 
       </div>

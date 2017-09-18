@@ -1,23 +1,8 @@
-/*
-import messageImporté de hub.js
-import exporteMessage de hub.js 
-
-
-importe le message du hub et checke s'il y a des trucs à faire, mais au niveau individuel
-
-PLUS TARD : transforme le "event" en step
-
-présenter tous les objets ici
-
-result = object.pistol();
-
-Meteor.call() etc : feedback pistol, plus confirmation au serveur
-
-*/
-import {Meteor} from 'meteor/meteor';
-import Player from '../api/collections/player.js';
-import World from '../api/collections/world.js';
+//import {Meteor} from 'meteor/meteor';
+//import Player from '../api/collections/player.js';
+//import World from '../api/collections/world.js';
 import pistol from './objects/pistol.js'
+import combats from './world/combats.js';
 
 var event ;
 

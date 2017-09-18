@@ -1,14 +1,7 @@
-Le client doit :
-afficher les infos du jeu
-faire du son
-faire entrer des modifications (reset, munitions ...)
+Etablir des règles de bases et les données qui vont avec
+Interface pour faciliter les steps
+afficher la timeline
+trouver le moyen de faire un truc dès qu'une valeur change
+******** régler method lecture son
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-Le serveur doit :
-recevoir les messages Arduino
-voir si les actions font des trucs
-renvoyer les messages vers Arduino
-
-
-
+probleme : va falloir commencer à gérer les comptes
